@@ -1,3 +1,4 @@
+import heapq
 class CalorieCounter:
 
     def __init__(self, calorie_list):
@@ -25,3 +26,7 @@ class CalorieCounter:
 
     def max_calories(self):
         return(max(self.total_cal_by_elf()))
+    
+    def sum_top3_calories(self):
+        top3 = heapq.nlargest(3,self.total_cal_by_elf())
+        return(sum(top3))
