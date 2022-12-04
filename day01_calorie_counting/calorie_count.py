@@ -10,19 +10,18 @@ class CalorieCounter:
         f.close()
         return cls(calorie_list)
 
-
-    def max_calories(self):
-        max_calories = 0
-        elf_number = 1
-        top_elf = [0, 0]
+    def total_cal_by_elf(self):
+        i = 0
+        elf = [0]
         
         for item_calories in self.calorie_list:
             if item_calories == "\n":
-                elf_number = elf_number + 1
-                max_calories = 0
+                i = i + 1
+                elf.append(0)
             else:
-                max_calories = max_calories + int(item_calories)
-                if max_calories > top_elf[1]:
-                    top_elf = [elf_number, max_calories]
+                elf[i] = elf[i] + int(item_calories)
 
-        return top_elf
+        return elf
+
+    def max_calories(self):
+        return(max(self.total_cal_by_elf()))
