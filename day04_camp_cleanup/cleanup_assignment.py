@@ -17,11 +17,7 @@ class CleanupAssignment:
         return cls(assignment_tuples)
 
     def fully_contains(assignment):
-        elf1_assignment = assignment[0].split('-')
-        elf1_sections = set(range(int(elf1_assignment[0]),int(elf1_assignment[1])+1))
-
-        elf2_assignment = assignment[1].split('-')
-        elf2_sections = set(range(int(elf2_assignment[0]),int(elf2_assignment[1])+1))
+        elf1_sections, elf2_sections = CleanupAssignment.map_sections(assignment)
 
         if elf1_sections.issubset(elf2_sections):
             return True
@@ -29,7 +25,6 @@ class CleanupAssignment:
             return True
         else:
             return False
-
 
     def number_of_contains(self):
         count = 0
@@ -40,11 +35,7 @@ class CleanupAssignment:
         return count
 
     def overlaps(assignment):
-        elf1_assignment = assignment[0].split('-')
-        elf1_sections = set(range(int(elf1_assignment[0]),int(elf1_assignment[1])+1))
-
-        elf2_assignment = assignment[1].split('-')
-        elf2_sections = set(range(int(elf2_assignment[0]),int(elf2_assignment[1])+1))
+        elf1_sections, elf2_sections = CleanupAssignment.map_sections(assignment)
 
         if len(set.intersection(elf1_sections, elf2_sections)) == 0:
             return False
@@ -58,3 +49,12 @@ class CleanupAssignment:
                 count += 1
         
         return count
+
+    def map_sections(assignment):
+        elf1_assignment = assignment[0].split('-')
+        elf1_sections = set(range(int(elf1_assignment[0]),int(elf1_assignment[1])+1))
+        
+        elf2_assignment = assignment[1].split('-')
+        elf2_sections = set(range(int(elf2_assignment[0]),int(elf2_assignment[1])+1))
+
+        return elf1_sections,elf2_sections
