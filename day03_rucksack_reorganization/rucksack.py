@@ -40,8 +40,8 @@ class Rucksack:
             raise Exception("Danger! Elves must go in groups of three.")
 
         total_priority = 0
-        for i in range(int(len(rucksacks)/3)):
-            three_rucksacks = rucksacks[i*3:i*3+3]
+        for i in range(0, int(len(rucksacks)), 3):
+            three_rucksacks = rucksacks[i:i+3]
             badge = next(iter(Rucksack.find_badge(three_rucksacks)))
             total_priority = total_priority + Rucksack.priority_scores(badge)
         
