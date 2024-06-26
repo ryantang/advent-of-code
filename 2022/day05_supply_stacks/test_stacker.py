@@ -51,7 +51,7 @@ class TestingStacker(unittest.TestCase):
 
 
     def test_mulit_move_from_file(self):
-        moves_file = '/Users/ryantang/workspace/advent-of-code/day05_supply_stacks/ rearrangement_procedure.txt'
+        moves_file = '/Users/ryan.tang/workspace/advent-of-code/2022/day05_supply_stacks/rearrangement_procedure.txt'
 
         config0 = [
             ['Z', 'N'],
@@ -78,7 +78,7 @@ class TestingStacker(unittest.TestCase):
 
     
     def test_together(self):
-        moves_file = '/Users/ryantang/workspace/advent-of-code/day05_supply_stacks/rearrangement_procedure.txt'
+        moves_file = '/Users/ryan.tang/workspace/advent-of-code/2022/day05_supply_stacks/rearrangement_procedure.txt'
 
         config0 = [
             ['Z', 'N'],
