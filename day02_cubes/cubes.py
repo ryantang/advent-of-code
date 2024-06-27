@@ -10,7 +10,7 @@ class GameVerifier:
     def max_colors(self, shown):
         max_counts = {'green': 0, 'blue': 0, 'red': 0}
 
-        game, results = shown.split(':')
+        _game, results = shown.split(':')
         segments = results.split(';')
         for segment in segments:
             color_counts = segment.split(',')
@@ -26,18 +26,15 @@ class GameVerifier:
         return max_counts['green'] * max_counts['blue'] * max_counts['red']
     
     def sum_of_power(self, games):
-        sum = 0
-        for game in games:
-            sum += self.power(game)
-        return sum
+        return sum(self.power(game) for game in games)
     
     def sum_possible_games(self, games):
-        sum = 0
+        sum_of_game_numbers = 0
         for game in games:
             if self.is_possible(game):
                 game_number = int(game.split(':')[0].split(' ')[1])
-                sum += game_number
-        return sum
+                sum_of_game_numbers += game_number
+        return sum_of_game_numbers
     
     def sum_possible_from_file(self, file):
         f = open(file, 'r')
