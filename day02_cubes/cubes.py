@@ -21,6 +21,16 @@ class GameVerifier:
                     max_counts[color] = count
         return max_counts
     
+    def power(self, shown):
+        max_counts = self.max_colors(shown)
+        return max_counts['green'] * max_counts['blue'] * max_counts['red']
+    
+    def sum_of_power(self, games):
+        sum = 0
+        for game in games:
+            sum += self.power(game)
+        return sum
+    
     def sum_possible_games(self, games):
         sum = 0
         for game in games:
@@ -35,4 +45,11 @@ class GameVerifier:
         f.close()
 
         return self.sum_possible_games(lines)
+    
+    def sum_of_power_from_file(self, file):
+        f = open(file, 'r')
+        lines = f.readlines()
+        f.close()
+
+        return self.sum_of_power(lines)
 
