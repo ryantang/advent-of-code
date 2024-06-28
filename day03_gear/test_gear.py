@@ -65,8 +65,8 @@ class TestingSchematic(unittest.TestCase):
         file = "/Users/ryan.tang/workspace/advent-of-code/day03_gear/sample.txt"
         self.assertEqual(self.analyzer.sum_part_numbers_from_file(file), 4361)
 
-        # file = "/Users/ryan.tang/workspace/advent-of-code/day03_gear/input"
-        # self.assertEqual(self.analyzer.sum_part_numbers_from_file(file), 116730)
+        file = "/Users/ryan.tang/workspace/advent-of-code/day03_gear/input"
+        self.assertEqual(self.analyzer.sum_part_numbers_from_file(file), 553825)
 
 if __name__ == '__main__':
     unittest.main()
