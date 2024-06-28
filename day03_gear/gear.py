@@ -6,6 +6,18 @@ class SchematicAnalyzer:
         for i in self.numbers_adjacent_to_symbol(schematic):
             result += int(i)
         return result
+    
+    def sum_part_numbers_from_file(self, file):
+        f = open(file, 'r')
+        lines = f.readlines()
+        f.close()
+
+        #convert lines to 2D array
+        schematic = []
+        for line in lines:
+            schematic.append(list(line.strip()))
+
+        return self.sum_part_numbers(schematic)
 
     def numbers_adjacent_to_symbol(self, schematic):
         numbers = []
@@ -47,8 +59,18 @@ class SchematicAnalyzer:
                 adjacent.append((row - 1, col)) #above
             if row < last_cell[0]:
                 adjacent.append((row + 1, col)) #below
-        if coordinates[0][1] > 0:
+
+        if coordinates[0][1] > 0: #first coordinate isn't on the left boundary
             adjacent.append((coordinates[0][0], coordinates[0][1] - 1)) #left
-        if coordinates[-1][1] < last_cell[1]:
+            if row > 0:
+                adjacent.append((coordinates[0][0] - 1, coordinates[0][1] - 1)) #diagonal up left
+            if row < last_cell[0]:
+                adjacent.append((coordinates[0][0] + 1, coordinates[0][1] - 1)) #diagonal down left
+
+        if coordinates[-1][1] < last_cell[1]: #last coordinate isn't on the right boundary
             adjacent.append((coordinates[-1][0], coordinates[-1][1] + 1)) #right
+            if row > 0:
+                adjacent.append((coordinates[-1][0] - 1, coordinates[-1][1] + 1)) #diagonal up right
+            if row < last_cell[0]:
+                adjacent.append((coordinates[-1][0] + 1, coordinates[-1][1] + 1)) #diagonal down right
         return adjacent
